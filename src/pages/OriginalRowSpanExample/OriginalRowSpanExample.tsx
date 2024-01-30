@@ -27,6 +27,7 @@ export const OriginalRowSpanExample = () => {
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState<IOlympicData[]>();
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    { field: "country" },
     {
       field: "athlete",
       rowSpan: rowSpan,
@@ -36,7 +37,6 @@ export const OriginalRowSpanExample = () => {
       width: 200,
     },
     { field: "age", width: 100 },
-    { field: "country" },
     { field: "year", width: 100 },
     { field: "date" },
     { field: "sport" },
