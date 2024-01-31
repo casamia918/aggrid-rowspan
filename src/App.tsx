@@ -1,7 +1,7 @@
 import { Tabs, rem } from "@mantine/core";
 
-import { OriginalRowSpanExample } from "./Pages/OriginalRowSpanExample";
-import { AutomaticRowSpanExample } from "./pages/AutomaticRowSpanExample";
+import { OriginalRowSpanExample } from "./examples/OriginalRowSpan";
+import { AutomaticRowSpanExample } from "./examples/AutomaticRowSpan";
 
 import classes from "./App.module.css";
 
