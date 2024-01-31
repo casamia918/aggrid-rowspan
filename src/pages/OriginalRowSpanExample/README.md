@@ -4,7 +4,7 @@
 
 - The "rowSpan" callback function usage is very restricted.
 
-- In real casees, grid should rendering row spanned cells with respected to the adjacent cell data, which means, automatically.
+- In real cases, grid should rendering row spanned cells with respected to the adjacent cell data, which means, automatically.
 
 - I've reserved the word "dynamically". Because, dynamic means, user can toggle any selected cells to be spanned or not spanned,
   as well as the cell merge feature of MS Excel. This is much more complicated use cases.

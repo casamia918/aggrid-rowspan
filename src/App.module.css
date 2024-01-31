@@ -1,0 +1,11 @@
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.list {
+  justify-content: center;
+}
+.panel {
+  flex-grow: 1;
+}

@@ -1,45 +1,49 @@
 "use strict";
 
 import React, { StrictMode, useCallback, useMemo, useState } from "react";
-import { ColDef, GridReadyEvent, RowSpanParams } from "ag-grid-community";
+import {
+  CellClassRules,
+  ColDef,
+  GridReadyEvent,
+  RowSpanParams,
+  GetRowSpanGroupIdParams,
+} from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { AgGridReact } from "ag-grid-react";
+
+import { getColDef_RowSpan } from "@/automatic-rowspan";
+
 import { IOlympicData } from "./types";
-import "./OriginalRowSpanExample.css";
+import "./AutomaticRowSpanExample.css";
 
-function rowSpan(params: RowSpanParams<IOlympicData>) {
-  const athlete = params.data ? params.data.athlete : undefined;
-  if (athlete === "Aleksey Nemov") {
-    // have all Russia age columns width 2
-    return 2;
-  } else if (athlete === "Ryan Lochte") {
-    // have all United States column width 4
-    return 4;
-  } else {
-    // all other rows should be just normal
-    return 1;
-  }
-}
+const getRowSpanGroupId = {
+  athlete(params: GetRowSpanGroupIdParams<IOlympicData>) {
+    return params.data?.athlete ?? "";
+  },
+  sport(params: GetRowSpanGroupIdParams<IOlympicData>) {
+    return this.athlete(params) + "__" + params.data?.sport ?? "";
+  },
+};
 
-export const OriginalRowSpanExample = () => {
+export const AutomaticRowSpanExample = () => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [rowData, setRowData] = useState<IOlympicData[]>();
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([
     { field: "country" },
-    {
+    getColDef_RowSpan({
       field: "athlete",
-      rowSpan: rowSpan,
-      cellClassRules: {
-        "cell-span": "value==='Aleksey Nemov' || value==='Ryan Lochte'",
-      },
+      getRowSpanGroupId: getRowSpanGroupId.athlete,
       width: 200,
-    },
+    }),
     { field: "age", width: 100 },
     { field: "year", width: 100 },
     { field: "date" },
-    { field: "sport" },
+    getColDef_RowSpan({
+      field: "sport",
+      getRowSpanGroupId: getRowSpanGroupId.athlete,
+    }),
     { field: "gold" },
     { field: "silver" },
     { field: "bronze" },
