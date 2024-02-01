@@ -1,10 +1,13 @@
 # aggrid-rowspan
 
-## Installation
+## 1. Installation and run demo
 
-> pnpm install
+```bash
+  pnpm install
+  pnpm dev
+```
 
-## OriginalRowSpanExample
+## 2. OriginalRowSpan
 
 - Reference: https://www.ag-grid.com/react-data-grid/row-spanning/#row-spanning-example
 
@@ -17,9 +20,9 @@
 
 - In this repo, I'm only focusing to the "automatic" row span.
 
-## AutomaticRowSpanExample
+## 3. AutomaticRowSpan
 
-### 1. Goal
+### 3.1. Goal
 
 - Grid cells should be automatically row spanned, without giving explictly define rowSpan callback function (like Original Example).
 - Application developer's interest is focused on "What the rowSpanGroup rule is", not "How many rows to be spanned"
@@ -32,7 +35,7 @@
 
   ![fig01](./doc-assets/fig01.png)\*Fig01. User might want to merge green cells, not red cells.
 
-### 2. Modeling RowSpanGroup
+### 3.2. Modeling RowSpanGroup
 
 - A RowSpanGroup is single level tree structure, consisted of "Head cell" and "Leaf cells".
 - Each RowSpanGroup should have unique id of its row span group.
@@ -47,7 +50,7 @@
 - "Leaf cell" have...
   - rowNodeId of the head node of belonging row span group.
 
-### 3. Key ingredients
+### 3.3. Key ingredients
 
 - ColDef.getRowSpanGroupId : return the unique id of its row span group. In same row span group, their rowSpanId should be same.
 
