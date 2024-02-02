@@ -71,16 +71,16 @@ http://localhost:5173/?count=30
 - meta field : special meta field which contains rowSpanGroup's tree structure information
 
 ```ts
-  type RowSpanMeta = {
-    headId: string;
-    leafIds: string[] | undefined;
-  };
+type RowSpanMeta = {
+  headId: string;
+  leafIds: string[] | undefined;
+};
 
-  interface WithMeta<Data> {
-    __meta__ : Partial<Record<P in keyof Data, RowSpanMeta>>;
-  }
+interface WithMeta<Data> {
+  __meta__: Partial<Record<keyof Data, RowSpanMeta>>;
+}
 
-  // @see data-json folder
+// @see data-json folder
 ```
 
 - headCell: rowNodeId === meta.headId

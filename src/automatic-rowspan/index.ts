@@ -1,3 +1,3 @@
 export * from "./types";
 export * from "./useRowSpannedRowData";
-export * from "./utils";
+export * from "./getColDefs";

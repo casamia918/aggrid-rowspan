@@ -5,7 +5,7 @@ import { IOlympicData } from "./types";
 import { fetchOlympicData } from "./util.fetchOlympicData";
 
 export function useOlympicData() {
-  const [rowData, setRowData] = useState<IOlympicData[]>();
+  const [rowData, setRowData] = useState<IOlympicData[]>([]);
 
   useEffect(() => {
     const maxCountStr = new URLSearchParams(window.location.search).get(

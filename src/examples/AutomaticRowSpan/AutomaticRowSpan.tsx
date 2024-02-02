@@ -10,25 +10,37 @@ import {
 } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
-import { getColDef_RowSpan } from "@/automatic-rowspan";
+import {
+  getColDef_RowSpan,
+  WithRowSpannedMeta,
+  useRowSpannedRowData,
+} from "@/automatic-rowspan";
 
 import { IOlympicData } from "../types";
 import { useOlympicData } from "../hook.useOlympicData";
 
 import "../style.css";
 
+////////////////////////////////////////
+// Step1: Define RowData type using WithRowSpannedMeta
+////////////////////////////////////////
+type ROlympicData = WithRowSpannedMeta<IOlympicData>;
+
 function joinIds(...ids: (string | undefined)[]) {
   return ids.map((id) => id ?? "").join("__");
 }
 
+////////////////////////////////////////
+// Step2: Define getRowSpanGroupId functions by each row spannable columns
+////////////////////////////////////////
 const getRowSpanGroupId = {
-  country(params: GetRowSpanGroupIdParams<IOlympicData>) {
+  country(params: GetRowSpanGroupIdParams<ROlympicData>) {
     return joinIds(params.data?.country);
   },
-  athlete(params: GetRowSpanGroupIdParams<IOlympicData>) {
+  athlete(params: GetRowSpanGroupIdParams<ROlympicData>) {
     return joinIds(this.country(params), params.data?.athlete);
   },
-  sport(params: GetRowSpanGroupIdParams<IOlympicData>) {
+  sport(params: GetRowSpanGroupIdParams<ROlympicData>) {
     return joinIds(this.athlete(params), params.data?.sport);
   },
 };
@@ -39,7 +51,15 @@ export const AutomaticRowSpanExample = () => {
 
   const { rowData, setRowData } = useOlympicData();
 
-  const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+  ////////////////////////////////////////
+  // Step3: call useRowSpannedRowData
+  ////////////////////////////////////////
+  const { rowSpannedRowData } = useRowSpannedRowData(rowData);
+
+  ////////////////////////////////////////
+  // Step4: call getColDef_RowSpan to make colDef
+  ////////////////////////////////////////
+  const [columnDefs, setColumnDefs] = useState<ColDef<ROlympicData>[]>([
     { field: "id", width: 80 },
     getColDef_RowSpan({
       field: "country",
@@ -74,8 +94,8 @@ export const AutomaticRowSpanExample = () => {
   return (
     <div style={containerStyle}>
       <div style={gridStyle} className={"ag-theme-quartz"}>
-        <AgGridReact<IOlympicData>
-          rowData={rowData}
+        <AgGridReact<ROlympicData>
+          rowData={rowSpannedRowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           suppressRowTransform={true}
