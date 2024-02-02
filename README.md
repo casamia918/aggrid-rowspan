@@ -7,6 +7,12 @@
   pnpm dev
 ```
 
+- to set max rowCount, set queryParam of "count"
+
+```
+http://localhost:5173/?count=20
+```
+
 ## 2. OriginalRowSpan
 
 - Reference: https://www.ag-grid.com/react-data-grid/row-spanning/#row-spanning-example
@@ -52,12 +58,18 @@
 
 ### 3.3. Key ingredients
 
-- ColDef.getRowSpanGroupId : return the unique id of its row span group. In same row span group, their rowSpanId should be same.
+- ColDef.getRowSpanGroupId : return the unique id of its row span group. In same row span group, their rowSpanGroupId should be same.
 
-  - rowSpanId can be composed of multiple field value. Which means, row span group of later column can be diversed by earlier column row span group. In other words, rowSpanGroup can have hierarchy order of columns.
+  - rowSpanGroupId can be composed of multiple field value. Which means, row span group of later column can be diversed by earlier column row span group. In other words, rowSpanGroup can have hierarchy order of columns.
 
   ![fig02](./doc-assets/fig02.png)\*Fig02. Visual presentation of row span group. <br/>Left : adjacent same data is considered as a row span group. <br/> Right : Row span group of Col2 is affected by earlier column (Col1).
 
-- useRowSpannedRowData : input is original row data. output is augmented row data of rowSpan specific meta field attached.
+- useRowSpannedRowData : input is original row data. output is augmented row data of rowSpan related meta field attached.
 
 - getColDef_RowSpan : Create ColDef object with rowSpan and cellClassRules are automatically assigned. Developer requires to pass getRowSpanGroupId
+
+## 4. Limitations
+
+- When use row span features, it is not uncommon to use row sorting. Because when user receive row spannable data, it's row order should be preserved. In other words, rowData should be sorted before passed into grid data.
+
+- Because of this, I also sorted olympic data right after fetch.

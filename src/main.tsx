@@ -1,5 +1,8 @@
 import "@mantine/core/styles.css";
 
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+
 import { createTheme, MantineProvider } from "@mantine/core";
 
 import React from "react";
