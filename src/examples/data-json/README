@@ -1,0 +1,5 @@
+This data-json is fetched olympicData when count is 30
+
+http://localhost:5173/?count=30
+
+I leave this data to clarify what data is in meta field.

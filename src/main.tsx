@@ -2,6 +2,7 @@ import "@mantine/core/styles.css";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import "ag-grid-enterprise";
 
 import { createTheme, MantineProvider } from "@mantine/core";
 

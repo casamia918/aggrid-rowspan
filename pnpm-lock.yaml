@@ -14,6 +14,9 @@ dependencies:
   ag-grid-community:
     specifier: ^31.0.3
     version: 31.0.3
+  ag-grid-enterprise:
+    specifier: ^31.0.3
+    version: 31.0.3
   ag-grid-react:
     specifier: ^31.0.3
     version: 31.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -864,6 +867,12 @@ packages:
 
   /ag-grid-community@31.0.3:
     resolution: {integrity: sha512-k81YmLaOQOab9BavYD+Pw2smZSl6TXOJqj9hRuf70XQl3EknOHCGcra7joJxZRJLMKE/HdR+u33TNyX4TCuWfg==}
+    dev: false
+
+  /ag-grid-enterprise@31.0.3:
+    resolution: {integrity: sha512-nhbYCqZ9XalyWBelY2YgJcqI/k3VQwjQPcoArbSSDHPM28vgpp7s43/KoOs1lvIHkbpBT5xyxsNo4nRE4uttGw==}
+    dependencies:
+      ag-grid-community: 31.0.3
     dev: false
 
   /ag-grid-react@31.0.3(react-dom@18.2.0)(react@18.2.0):

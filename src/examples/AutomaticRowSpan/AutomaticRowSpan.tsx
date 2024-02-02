@@ -22,8 +22,11 @@ function joinIds(...ids: (string | undefined)[]) {
 }
 
 const getRowSpanGroupId = {
+  country(params: GetRowSpanGroupIdParams<IOlympicData>) {
+    return joinIds(params.data?.country);
+  },
   athlete(params: GetRowSpanGroupIdParams<IOlympicData>) {
-    return joinIds(params.data?.country, params.data?.athlete);
+    return joinIds(this.country(params), params.data?.athlete);
   },
   sport(params: GetRowSpanGroupIdParams<IOlympicData>) {
     return joinIds(this.athlete(params), params.data?.sport);
@@ -37,19 +40,24 @@ export const AutomaticRowSpanExample = () => {
   const { rowData, setRowData } = useOlympicData();
 
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([
-    { field: "country" },
+    { field: "id", width: 80 },
+    getColDef_RowSpan({
+      field: "country",
+      getRowSpanGroupId: getRowSpanGroupId.country,
+      width: 170,
+    }),
     getColDef_RowSpan({
       field: "athlete",
       getRowSpanGroupId: getRowSpanGroupId.athlete,
       width: 200,
     }),
+    getColDef_RowSpan({
+      field: "sport",
+      getRowSpanGroupId: getRowSpanGroupId.sport,
+    }),
     { field: "age", width: 100 },
     { field: "year", width: 100 },
     { field: "date" },
-    getColDef_RowSpan({
-      field: "sport",
-      getRowSpanGroupId: getRowSpanGroupId.athlete,
-    }),
     { field: "gold" },
     { field: "silver" },
     { field: "bronze" },
@@ -72,6 +80,7 @@ export const AutomaticRowSpanExample = () => {
           defaultColDef={defaultColDef}
           suppressRowTransform={true}
           getRowId={(d) => d.data.id}
+          enableRangeSelection // CAUTION: aggrid enterprise feature
         />
       </div>
     </div>

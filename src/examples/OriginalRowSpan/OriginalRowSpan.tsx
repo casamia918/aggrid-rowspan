@@ -31,6 +31,7 @@ export const OriginalRowSpanExample = () => {
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const { rowData, setRowData } = useOlympicData();
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    { field: "id", width: 80 },
     { field: "country" },
     {
       field: "athlete",
@@ -40,10 +41,10 @@ export const OriginalRowSpanExample = () => {
       },
       width: 200,
     },
+    { field: "sport" },
     { field: "age", width: 100 },
     { field: "year", width: 100 },
     { field: "date" },
-    { field: "sport" },
     { field: "gold" },
     { field: "silver" },
     { field: "bronze" },
@@ -66,6 +67,8 @@ export const OriginalRowSpanExample = () => {
           defaultColDef={defaultColDef}
           suppressRowTransform={true}
           getRowId={(d) => d.data.id}
+          enableRangeSelection // CAUTION: aggrid enterprise feature
+          rowSelection="multiple"
         />
       </div>
     </div>
