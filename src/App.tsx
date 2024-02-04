@@ -3,6 +3,8 @@ import { Tabs, rem } from "@mantine/core";
 import { OriginalRowSpanExample } from "./examples/OriginalRowSpan";
 import { AutomaticRowSpanExample } from "./examples/AutomaticRowSpan";
 
+import "./examples/style.css";
+
 import classes from "./App.module.css";
 
 function App() {

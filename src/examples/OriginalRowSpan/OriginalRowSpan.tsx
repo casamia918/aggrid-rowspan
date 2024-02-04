@@ -10,8 +10,6 @@ import { AgGridReact } from "ag-grid-react";
 import { IOlympicData } from "../types";
 import { useOlympicData } from "../hook.useOlympicData";
 
-import "../style.css";
-
 function rowSpan(params: RowSpanParams<IOlympicData>) {
   const athlete = params.data ? params.data.athlete : undefined;
   if (athlete === "Aleksey Nemov") {

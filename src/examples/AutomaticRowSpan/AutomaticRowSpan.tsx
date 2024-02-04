@@ -19,8 +19,6 @@ import {
 import { IOlympicData } from "../types";
 import { useOlympicData } from "../hook.useOlympicData";
 
-import "../style.css";
-
 ////////////////////////////////////////
 // Step1: Define RowData type using WithRowSpannedMeta
 ////////////////////////////////////////
