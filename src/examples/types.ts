@@ -1,3 +1,5 @@
+import { WithRowSpannedMeta } from "@/automatic-rowspan/types";
+
 export interface IOlympicData {
   id: string;
   athlete: string;
@@ -11,3 +13,9 @@ export interface IOlympicData {
   bronze: number;
   total: number;
 }
+
+////////////////////////////////////////
+// Step1: Define RowData type using WithRowSpannedMeta
+////////////////////////////////////////
+
+export type ROlympicData = WithRowSpannedMeta<IOlympicData>;

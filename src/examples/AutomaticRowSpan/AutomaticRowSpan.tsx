@@ -1,47 +1,36 @@
 "use strict";
 
-import React, { StrictMode, useCallback, useMemo, useState } from "react";
+import React, {
+  StrictMode,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
+
+import { AgGridReact } from "ag-grid-react";
 import {
-  CellClassRules,
   ColDef,
+  GridApiSet,
+  CellClassRules,
   GridReadyEvent,
   RowSpanParams,
   GetRowSpanGroupIdParams,
 } from "ag-grid-community";
-import { AgGridReact } from "ag-grid-react";
 
 import {
-  getColDef_RowSpan,
   WithRowSpannedMeta,
+  getColDef_RowSpan,
   useRowSpannedRowData,
 } from "@/automatic-rowspan";
 
-import { IOlympicData } from "../types";
 import { useOlympicData } from "../hook.useOlympicData";
 
-////////////////////////////////////////
-// Step1: Define RowData type using WithRowSpannedMeta
-////////////////////////////////////////
-type ROlympicData = WithRowSpannedMeta<IOlympicData>;
+import { IOlympicData, ROlympicData } from "../types";
 
-function joinIds(...ids: (string | undefined)[]) {
-  return ids.map((id) => id ?? "").join("__");
-}
-
-////////////////////////////////////////
-// Step2: Define getRowSpanGroupId functions by each row spannable columns
-////////////////////////////////////////
-const getRowSpanGroupId = {
-  country(params: GetRowSpanGroupIdParams<ROlympicData>) {
-    return joinIds(params.data?.country);
-  },
-  athlete(params: GetRowSpanGroupIdParams<ROlympicData>) {
-    return joinIds(this.country(params), params.data?.athlete);
-  },
-  sport(params: GetRowSpanGroupIdParams<ROlympicData>) {
-    return joinIds(this.athlete(params), params.data?.sport);
-  },
-};
+import { getRowSpanGroupId, getRowDataId } from "./AutomaticRowSpan.lib";
 
 export const AutomaticRowSpanExample = () => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
@@ -49,29 +38,26 @@ export const AutomaticRowSpanExample = () => {
 
   const { rowData, setRowData } = useOlympicData();
 
-  ////////////////////////////////////////
-  // Step3: call useRowSpannedRowData
-  ////////////////////////////////////////
-  const { rowSpannedRowData } = useRowSpannedRowData(rowData);
+  const gridRef = useRef<AgGridReact<ROlympicData> | null>(null);
 
   ////////////////////////////////////////
-  // Step4: call getColDef_RowSpan to make colDef
+  // Step3: call getColDef_RowSpan to make colDef
   ////////////////////////////////////////
   const [columnDefs, setColumnDefs] = useState<ColDef<ROlympicData>[]>([
     { field: "id", width: 80 },
     getColDef_RowSpan({
       field: "country",
-      getRowSpanGroupId: getRowSpanGroupId.country,
+      getRowSpanGroupId: getRowSpanGroupId.country.bind(getRowSpanGroupId),
       width: 170,
     }),
     getColDef_RowSpan({
       field: "athlete",
-      getRowSpanGroupId: getRowSpanGroupId.athlete,
+      getRowSpanGroupId: getRowSpanGroupId.athlete.bind(getRowSpanGroupId),
       width: 200,
     }),
     getColDef_RowSpan({
       field: "sport",
-      getRowSpanGroupId: getRowSpanGroupId.sport,
+      getRowSpanGroupId: getRowSpanGroupId.sport.bind(getRowSpanGroupId),
     }),
     { field: "age", width: 100 },
     { field: "year", width: 100 },
@@ -82,6 +68,16 @@ export const AutomaticRowSpanExample = () => {
     { field: "total" },
   ]);
 
+  ////////////////////////////////////////
+  // Step4: call useRowSpannedRowData
+  ////////////////////////////////////////
+  const { rowSpannedRowData } = useRowSpannedRowData(
+    rowData,
+    columnDefs,
+    gridRef,
+    getRowDataId
+  );
+
   const defaultColDef = useMemo<ColDef>(() => {
     return {
       width: 170,
@@ -89,16 +85,25 @@ export const AutomaticRowSpanExample = () => {
     };
   }, []);
 
+  console.log("rowSpannedRowData", rowSpannedRowData);
+
   return (
     <div style={containerStyle}>
       <div style={gridStyle} className={"ag-theme-quartz"}>
         <AgGridReact<ROlympicData>
+          ref={gridRef}
           rowData={rowSpannedRowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           suppressRowTransform={true}
-          getRowId={(d) => d.data.id}
+          getRowId={(params) => getRowDataId(params.data)}
           enableRangeSelection // CAUTION: aggrid enterprise feature
+          // CAUTION: Due to row virtualization, when row group length is larget than
+          // number of rows in screen
+          // rowGroup is not showing
+          //
+          // suppressRowVirtualisation
+          // suppressMaxRenderedRowRestriction
         />
       </div>
     </div>

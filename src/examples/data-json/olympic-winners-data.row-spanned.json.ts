@@ -18,11 +18,11 @@
       },
       athlete: {
         headId: "1",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "1",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -99,11 +99,11 @@
       },
       athlete: {
         headId: "4",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "4",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -126,11 +126,11 @@
       },
       athlete: {
         headId: "5",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "5",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -153,11 +153,11 @@
       },
       athlete: {
         headId: "6",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "6",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -180,11 +180,11 @@
       },
       athlete: {
         headId: "7",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "7",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -207,11 +207,11 @@
       },
       athlete: {
         headId: "8",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "8",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -234,11 +234,11 @@
       },
       athlete: {
         headId: "9",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "9",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -338,15 +338,15 @@
     __meta__: {
       country: {
         headId: "13",
-        leafIds: [],
+        leafids: undefined,
       },
       athlete: {
         headId: "13",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "13",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -369,11 +369,11 @@
       },
       athlete: {
         headId: "14",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "14",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -396,11 +396,11 @@
       },
       athlete: {
         headId: "15",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "15",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -419,15 +419,15 @@
     __meta__: {
       country: {
         headId: "16",
-        leafIds: [],
+        leafids: undefined,
       },
       athlete: {
         headId: "16",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "16",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -450,11 +450,11 @@
       },
       athlete: {
         headId: "17",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "17",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
@@ -477,11 +477,11 @@
       },
       athlete: {
         headId: "18",
-        leafIds: [],
+        leafids: undefined,
       },
       sport: {
         headId: "18",
-        leafIds: [],
+        leafids: undefined,
       },
     },
   },
