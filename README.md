@@ -3,8 +3,13 @@
 ## 1. Installation and run demo
 
 ```bash
+  // pnpm
   pnpm install
   pnpm dev
+
+  // npm
+  npm install
+  npm run dev
 ```
 
 - to set max rowCount, set queryParam of "count"
