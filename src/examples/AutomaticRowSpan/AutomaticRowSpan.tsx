@@ -26,7 +26,7 @@ import {
   useRowSpannedRowData,
 } from "@/automatic-rowspan";
 
-import { useOlympicData } from "../hook.useOlympicData";
+import { useOlympicData } from "../libs";
 
 import { IOlympicData, ROlympicData } from "../types";
 
@@ -36,7 +36,7 @@ export const AutomaticRowSpanExample = () => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
 
-  const { rowData, setRowData } = useOlympicData();
+  const { rowData } = useOlympicData();
 
   const gridRef = useRef<AgGridReact<ROlympicData> | null>(null);
 

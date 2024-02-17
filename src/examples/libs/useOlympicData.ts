@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
 
-import { IOlympicData } from "./types";
-import { fetchOlympicData } from "./util.fetchOlympicData";
+import { IOlympicData } from "../types";
+import { fetchOlympicData } from "./fetchOlympicData";
 
 export function useOlympicData() {
   const [rowData, setRowData] = useState<IOlympicData[]>([]);
@@ -15,5 +15,5 @@ export function useOlympicData() {
     fetchOlympicData(maxCount).then(setRowData);
   }, []);
 
-  return { rowData, setRowData };
+  return { rowData };
 }

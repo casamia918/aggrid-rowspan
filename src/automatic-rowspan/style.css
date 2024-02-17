@@ -8,7 +8,7 @@
   border: var(--border);
   border-right: var(--border);
   box-sizing: border-box;
-  border-top: unset;
+  border-top: var(--border);
 }
 
 .cell-span-leaf {

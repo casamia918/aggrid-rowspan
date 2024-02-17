@@ -8,7 +8,7 @@ import { ColDef, GridReadyEvent, RowSpanParams } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
 import { IOlympicData } from "../types";
-import { useOlympicData } from "../hook.useOlympicData";
+import { useOlympicData } from "../libs";
 
 function rowSpan(params: RowSpanParams<IOlympicData>) {
   const athlete = params.data ? params.data.athlete : undefined;
@@ -27,7 +27,7 @@ function rowSpan(params: RowSpanParams<IOlympicData>) {
 export const OriginalRowSpanExample = () => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const { rowData, setRowData } = useOlympicData();
+  const { rowData } = useOlympicData();
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([
     { field: "id", width: 80 },
     { field: "country" },
@@ -35,7 +35,8 @@ export const OriginalRowSpanExample = () => {
       field: "athlete",
       rowSpan: rowSpan,
       cellClassRules: {
-        "cell-span-original": "value==='Aleksey Nemov' || value==='Ryan Lochte'",
+        "cell-span-original":
+          "value==='Aleksey Nemov' || value==='Ryan Lochte'",
       },
       width: 200,
     },
