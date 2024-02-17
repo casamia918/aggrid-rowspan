@@ -10,7 +10,7 @@ export async function fetchOlympicData(
   ).then((d) => d.json());
 
   const data2 = _.chain(data)
-    .filter((d, idx) => {
+    .filter((__, idx) => {
       return idx < maxCount;
     })
     .sortBy(["country", "athlete", "sport", "year"])
