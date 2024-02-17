@@ -18,6 +18,8 @@
 http://localhost:5173/?count=30
 ```
 
+![fig00](./doc-assets/fig00.png)\*
+
 ## 2. OriginalRowSpan
 
 - Reference: https://www.ag-grid.com/react-data-grid/row-spanning/#row-spanning-example
