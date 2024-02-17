@@ -91,12 +91,22 @@ interface WithMeta<Data> {
 
 ### 4.1. Sorting
 
-- When use row span features, it is not uncommon to use row sorting. Because when user receive row spannable data, it's row order should be preserved. In other words, rowData should be sorted before passed into grid data.
+- When using row span features, it is not uncommon to be sorted by users. Because, when user sort row spanned data, the row span group will be broken by unexpected ways.
 
-- Because of this, I also sorted olympic data right after fetch.
+- In other words, row spannable rowData should be sorted before passed into grid data. After than, its row order should be preserved.
+
+- In example, I've sorted olympic data right after fetch. (see src/examples/libs/fetchOlympicData). Also, I've set sortable:true in defaultColDef.
 
 ### 4.2. Row virtualization
 
--
+- Becaused of virtualization, rows which are not in viewable area wlll not be rendered.
 
-### 4.3. Cell focus style
+- When combining with row span feature, this is very tricky point. Because rows have vertical relations within certain column's row group.
+
+- In this example with enough row count (`http://localhost:5173/?count=100`), look carefully to the "Country" column with large row span group size. ("Australia")
+
+  - At first, it looks good. But when scroll downs, row border will be shown inside of row span group.
+
+  - This is inevitable because row span head is out of rendered area.
+
+  ![fig03](./doc-assets/fig03.png)\*
