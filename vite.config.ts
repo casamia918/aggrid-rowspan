@@ -7,6 +7,6 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
-    open: "/?count=30",
+    open: "/?count=100",
   },
 });

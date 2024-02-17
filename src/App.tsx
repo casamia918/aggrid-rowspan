@@ -10,7 +10,7 @@ import classes from "./App.module.css";
 function App() {
   return (
     <>
-      <Tabs defaultValue="original" classNames={classes}>
+      <Tabs defaultValue="automatic" classNames={classes}>
         <Tabs.List>
           <Tabs.Tab value="original">Original</Tabs.Tab>
           <Tabs.Tab value="automatic">Automatic</Tabs.Tab>

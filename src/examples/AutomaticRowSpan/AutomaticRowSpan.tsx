@@ -97,13 +97,12 @@ export const AutomaticRowSpanExample = () => {
           defaultColDef={defaultColDef}
           suppressRowTransform={true}
           getRowId={(params) => getRowDataId(params.data)}
-          enableRangeSelection // CAUTION: aggrid enterprise feature
-          // CAUTION: Due to row virtualization, when row group length is larget than
-          // number of rows in screen
-          // rowGroup is not showing
           //
-          // suppressRowVirtualisation
-          // suppressMaxRenderedRowRestriction
+          enableRangeSelection // CAUTION: aggrid enterprise feature
+          //
+          // CAUTION: Due to row virtualization, when row group size is larger than row buffer size,
+          // head cell will be disappeared while scrolling.
+          rowBuffer={5}
         />
       </div>
     </div>

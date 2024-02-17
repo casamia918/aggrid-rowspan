@@ -89,6 +89,14 @@ interface WithMeta<Data> {
 
 ## 4. Limitations
 
+### 4.1. Sorting
+
 - When use row span features, it is not uncommon to use row sorting. Because when user receive row spannable data, it's row order should be preserved. In other words, rowData should be sorted before passed into grid data.
 
 - Because of this, I also sorted olympic data right after fetch.
+
+### 4.2. Row virtualization
+
+-
+
+### 4.3. Cell focus style

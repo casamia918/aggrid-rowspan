@@ -35,7 +35,7 @@ export const OriginalRowSpanExample = () => {
       field: "athlete",
       rowSpan: rowSpan,
       cellClassRules: {
-        "cell-span": "value==='Aleksey Nemov' || value==='Ryan Lochte'",
+        "cell-span-original": "value==='Aleksey Nemov' || value==='Ryan Lochte'",
       },
       width: 200,
     },

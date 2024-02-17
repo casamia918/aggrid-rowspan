@@ -21,7 +21,7 @@ export function checkIfHeadcellOfMeta(meta: RowSpanMeta, rowId: string) {
   return meta.headId === rowId;
 }
 
-export function chedkIfHeadCell<
+export function checkIfHeadCell<
   TData extends object = object,
   Field extends string = keyof TData & string
 >(data: WithRowSpannedMeta<TData>, field: Field, rowId: string) {

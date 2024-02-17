@@ -1,5 +1,27 @@
-.cell-span {
-  background-color: #eeddcc90;
-  border: 1px solid #a0a0a0;
-  border-right: 1px solid #a0a0a0 !important;
+[class*="ag-theme-"] {
+  --bgColor: #bbffcc;
+  --border: var(--ag-row-border-style) #777777 var(--ag-row-border-width);
+}
+
+.cell-span-head {
+  background-color: var(--bgColor);
+  border: var(--border);
+  border-right: var(--border);
+  box-sizing: border-box;
+  border-top: unset;
+}
+
+.cell-span-leaf {
+  background-color: var(--bgColor);
+  border-left: var(--border);
+  border-right: var(--border);
+  border-top: unset;
+  color: transparent;
+  box-sizing: border-box;
+}
+
+.cell-span-original {
+  background-color: var(--bgColor);
+  border: var(--border) !important;
+  border-right: var(--border) !important;
 }

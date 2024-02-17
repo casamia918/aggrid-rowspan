@@ -21,8 +21,13 @@ export function getColDef_RowSpan<
     },
     ...override,
     cellClassRules: {
-      "cell-span": (params) => {
-        return Util.getRowSpanCount(params.data, field) > 1;
+      "cell-span-head": (params) => {
+        const field = params.column.getColId();
+        return Util.checkIfHeadCell(params.data!, field, params.node.id!);
+      },
+      "cell-span-leaf": (params) => {
+        const field = params.column.getColId();
+        return !Util.getMetaOfField(params.data!, field)?.leafIds;
       },
       ...override.cellClassRules,
     },
